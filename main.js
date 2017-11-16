@@ -13,7 +13,7 @@ var pool = mysql.createPool({
   host            : 'classmysql.engr.oregonstate.edu',
   user            : 'cs361_' + process.argv[3],
   password        : process.argv[4],
-  database        : 'group20'
+  database        : 'cs361_' + process.argv[3]
 });
 
 var app = express();
