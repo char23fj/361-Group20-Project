@@ -8,11 +8,11 @@ var email = document.getElementById("emailEntry");
 var address = document.getElementById("addressEntry");
 var zip = document.getElementById("zipEntry");
 var state = document.getElementById("stateEntry");
-var entryDiv = document.getElementById("entries");
 var userField = document.getElementById("idBar");
 var passField = document.getElementById("pwBar1");
 var passConfirm = document.getElementById("pwBar2");
 var loginButton = document.getElementById("submitBtn");
+var entryDiv = document.getElementById("entries");
 
 document.addEventListener("DOMContentLoaded", function(){
   loginButton.disabled = true;
@@ -27,9 +27,10 @@ function submission(event)
   //This will require a div above or below the login fields for entry errors
   var error = document.getElementById("invalidDiv").textContent = "";
 
+  //This will require a function that queries the DB for COUNT() where (userName = <userId>)
   if (dataBaseSearch(user, "userId"))
   {
-    error += "That email address is already in use.\n";
+    error += "That user ID is already in use.\n";
   }
 
   if (passConfirm.value !== passField.value)
@@ -54,7 +55,8 @@ function submission(event)
       userId: userField.value,
       password: passField.value
     };
-      
+    
+    //Post request to the 
     var req = new XMLHttpRequest();
 
     req.open('POST', '/addUser', true);
