@@ -5,6 +5,8 @@
 
 var express = require('express');
 
+
+
 var mysql = require('mysql');
 var pool = mysql.createPool({
   connectionLimit : 10,
@@ -16,9 +18,9 @@ var pool = mysql.createPool({
 
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
-
 var bodyParser = require('body-parser');
 
+app.use(express.static('views/images'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -47,9 +49,9 @@ app.get('/invalidlogin', function(req, res, next){
 });
 
 //Render new user entry page
-app.get('/newuser', function(req, res, next){
+app.get('/register', function(req, res, next){
   var context = {};
-  res.render('newuser', context);
+  res.render('register', context);
 });
 
 //Render edit account details page
@@ -58,17 +60,26 @@ app.get('/editaccount',function(req, res, next){
   res.render('editaccount', context);
 });
 
+app.get('/forgot', function (req, res, next) {
+    var context = {};
+    res.render('Forgot', context);
+
+})
+
+
+
+/*
 app.use(function(req,res){
   res.status(404);
   res.render('404');
-});
+});*/
 
-app.use(function(err, req, res, next){
+/*app.use(function(err, req, res, next){
   console.error(err.stack);
   res.type('plain/text');
   res.status(500);
-  res.render('500');
-});
+  //res.render('500');
+});*/
 
 app.listen(app.get('port'), function(){
   console.log('Express started on http://flip2.engr.oregonstate.edu:' + app.get('port') + '; press Ctrl-C to terminate.');
