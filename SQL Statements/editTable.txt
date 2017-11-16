@@ -1,0 +1,9 @@
+UPDATE `siteUser` SET 
+	`firstName` = [firstName], 
+	`lastName` = [lastName], 
+	`address` = [address], 
+	`zipCode` = [zipCode], 
+	`state` = [state], 
+	`userName` = [userName], 
+	`password` = [password] 
+	WHERE `siteUser`.`userId` = [userId];
