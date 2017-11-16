@@ -66,8 +66,46 @@ app.get('/forgot', function (req, res, next) {
 
 })
 
+//attempt to login currently reloads page on fail goes to login if success
+app.get('/attemptLogin', function (req, res, next) {
+    var context = {};
+    var tempUserName = req.param('userName');
+    var tempPassword = req.param('password');
+    var temp = '';
+    var myResponse='';
+    pool.getConnection(function (err, connection) {
+        
+        connection.query("SELECT * FROM siteUser WHERE userName = ? AND password = ?", [tempUserName, tempPassword], function (err, rows, fields) {
+            if (err) {
+                next(err);
+                return;
+            }
+            context.results = JSON.stringify(rows[0]);
+
+            try {
+                myResponse = JSON.parse(context.results);
+                temp = myResponse.userId;
+            } catch (err) {
+            }
+
+            if (temp != '') {
+                res.render('Forgot', context);
+            } else {
+                res.render('login', context);
+            }
+        });
+        connection.release();
+    });
+});
 
 
+function loadPage(req, res, next) {
+    var context = {};
+
+    res.render('login', context);
+}
+
+//Currently Breaking 
 /*
 app.use(function(req,res){
   res.status(404);
