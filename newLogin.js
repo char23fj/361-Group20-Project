@@ -4,7 +4,10 @@
 
 var fName = document.getElementById("firstNameEntry");
 var lName = document.getElementById("lastNameEntry");
-var location = document.getElementById("locationEntry");
+var email = document.getElementById("emailEntry");
+var address = document.getElementById("addressEntry");
+var zip = document.getElementById("zipEntry");
+var state = document.getElementById("stateEntry");
 var entryDiv = document.getElementById("entries");
 var userField = document.getElementById("idBar");
 var passField = document.getElementById("pwBar1");
@@ -41,19 +44,40 @@ function submission(event)
   
   if (error == "")
   {
-    var reqBody = 
-    //This function call is just a placeholder until the queries are in place
-    //(or it could be used as a caller for the relevant query)
-    addToDatabase(reqBody);
+    var reqBody = {
+      firstName: fName.value,
+      lastName: lName.value,
+      email: email.value,
+      homeAddress: address.value,
+      zipCode: zip.value,
+      homeState: state.value,
+      userId: userField.value,
+      password: passField.value
+    };
+      
+    var req = new XMLHttpRequest();
+
+    req.open('POST', '/addUser', true);
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.addEventListener('load', function(event){
+      if(req.status >= 200 && req.status < 400)
+      {
+        console.log(JSON.parse(req.responseText));
+      }
+      else
+      {
+        console.log('Error in network request: ' + req.statusText);
+      }
+    });
+    req.send(JSON.stringify(reqBody));
   }
-  
   event.preventDefault();
 };
 
 function enableOrDisableLB()
 {
-  if (fName.value == "" || lName.value == "" || location.value == ""
-  || userField.value == "" || passField.value == "" || passConfirm.value == "")
+  if (fName.value == "" || lName.value == "" || address.value == "" || zip.value == "" ||
+  state.value == "" || userField.value == "" || passField.value == "" || passConfirm.value == "")
   {
     loginButton.disabled = true;
   }
