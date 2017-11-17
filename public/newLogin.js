@@ -43,7 +43,7 @@ function submission(event)
   if (passField.value.length < 8)
   {
     errorBox.textContent += "Your password doesn't meet the minimum length requirement.\n"
-    + "Please choose a password of at least 8 characters.\n;
+    + "Please choose a password of at least 8 characters.\n";
   }
   
   if (errorBox.textContent == "")
