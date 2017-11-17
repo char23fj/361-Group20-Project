@@ -5,15 +5,13 @@
 
 var express = require('express');
 
-
-
 var mysql = require('mysql');
 var pool = mysql.createPool({
   connectionLimit : 10,
   host            : 'classmysql.engr.oregonstate.edu',
-  user            : 'cs361_' + process.argv[3],
-  password        : process.argv[4],
-  database        : 'cs361_' + process.argv[3]
+  user            : 'cs361_sigillip',
+  password        : '5316',
+  database        : 'cs361_sigillip'
 });
 
 var app = express();
@@ -49,10 +47,37 @@ app.get('/invalidlogin', function(req, res, next){
 });
 
 //Render new user entry page
-app.get('/register', function(req, res, next){
+app.post('/registerSubmit', function(req, res, next){
   var context = {};
   res.render('register', context);
+
+  var firstNameEntry = req.param('firstNameEntry');
+  console.log("FIRST NAME ENTRY IS:" + firstNameEntry);
+  var lastNameEntry = req.param('lastNameEntry');
+  var emailEntry = req.param('emailEntry');
+  var addressEntry = req.param('addressEntry');
+  var zipEntry = req.param('zipEntry');
+  var stateEntry = req.param('stateEntry');
+  var userName = req.param('userName');
+  var pwBar1 = req.param('pwBar1');
+
+  var context = {};
+  var myResponse = '';
+  pool.getConnection(function (err, connection) {
+      console.log("FIRED 1");
+      connection.query("INSERT INTO siteUser (firstName, lastName, address, zipCode, state, userName, password) VALUES (?, ?, ?, ?, ?, ?, ?)", [firstNameEntry, lastNameEntry, addressEntry, zipEntry, stateEntry, userName, pwBar1]); 
+      connection.release();
+  });
+      
+  });
+
+//Render edit account details page
+app.get('/register', function (req, res, next) {
+    var context = {};
+    res.render('register', context);
 });
+
+
 
 //Render edit account details page
 app.get('/editaccount',function(req, res, next){
@@ -63,8 +88,7 @@ app.get('/editaccount',function(req, res, next){
 app.get('/forgot', function (req, res, next) {
     var context = {};
     res.render('Forgot', context);
-
-})
+});
 
 //attempt to login currently reloads page on fail goes to login if success
 app.get('/attemptLogin', function (req, res, next) {
@@ -97,6 +121,9 @@ app.get('/attemptLogin', function (req, res, next) {
         connection.release();
     });
 });
+
+
+
 
 
 function loadPage(req, res, next) {
