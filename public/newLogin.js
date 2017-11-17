@@ -26,25 +26,27 @@ function submission(event)
 {
   
   //This will require a div above or below the login fields for entry errors
-  var error = document.getElementById("invalidDiv").textContent = "";
+  var errorBox = document.getElementById("invalidDiv");
+  errorBox.textContent = "";
 
   //This will require a function that queries the DB for COUNT() where (userName = <userId>)
   /*if (dataBaseSearch(user, "userId"))
   {
-    error += "That user ID is already in use.\n";
+    errorBox.textContent += "That user ID is already in use.\n";
   }*/
 
   if (passConfirm.value !== passField.value)
   {
-    error += "The passwords you entered don't match.\n";
+    errorBox.textContent += "The passwords you entered don't match.\n";
   }
   
   if (passField.value.length < 8)
   {
-    error += "Your password doesn't meet the minimum length requirement.\n";
+    errorBox.textContent += "Your password doesn't meet the minimum length requirement.\n"
+    + "Please choose a password of at least 8 characters.\n;
   }
   
-  if (error == "")
+  if (errorBox.textContent == "")
   {
     var reqBody = {
       firstNameEntry: fName.value,
