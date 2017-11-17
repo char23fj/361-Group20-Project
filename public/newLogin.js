@@ -8,27 +8,28 @@ var email = document.getElementById("emailEntry");
 var address = document.getElementById("addressEntry");
 var zip = document.getElementById("zipEntry");
 var state = document.getElementById("stateEntry");
-var userField = document.getElementById("idBar");
 var passField = document.getElementById("pwBar1");
 var passConfirm = document.getElementById("pwBar2");
-var loginButton = document.getElementById("submitBtn");
+var registerButton = document.getElementById("submitBtn");
 var entryDiv = document.getElementById("entries");
+var userName = document.getElementById("userName");
+
 
 document.addEventListener("DOMContentLoaded", function(){
-  loginButton.disabled = true;
-  loginButton.addEventListener("click", submission);
-  entryDiv.addEventListener("input", enableOrDisableLB);
+  registerButton.disabled = true;
+  registerButton.addEventListener("click", submission);
+  document.getElementById("entryDiv").addEventListener("input", enableOrDisableLB);
+  console.log("fired");
 });
 
 function submission(event)
 {
-  var user = userField.value;
   
   //This will require a div above or below the login fields for entry errors
   var error = document.getElementById("invalidDiv").textContent = "";
 
   //This will require a function that queries the DB for COUNT() where (userName = <userId>)
-  if (dataBaseSearch(user, "userId"))
+  /*if (dataBaseSearch(user, "userId"))
   {
     error += "That user ID is already in use.\n";
   }
@@ -41,19 +42,19 @@ function submission(event)
   if (passField.value.length > 8)
   {
     error += "Your password doesn't meet the minimum length requirement.\n";
-  }
+  }*/
   
   if (error == "")
   {
     var reqBody = {
-      firstName: fName.value,
-      lastName: lName.value,
-      email: email.value,
-      homeAddress: address.value,
-      zipCode: zip.value,
-      homeState: state.value,
-      userId: userField.value,
-      password: passField.value
+      firstNameEntry: fName.value,
+      lastNameEntry: lName.value,
+      emailEntry: email.value,
+      addressEntry: address.value,
+      zipEntry: zip.value,
+      stateEntry: state.value,
+      userName: userName.value,
+      pwBar1: passField.value
     };
     
     //Post request to the 
@@ -64,7 +65,8 @@ function submission(event)
     req.addEventListener('load', function(event){
       if(req.status >= 200 && req.status < 400)
       {
-        console.log(JSON.parse(req.responseText));
+        //console.log(JSON.parse(req.responseText));
+        console.log("query fired!");
       }
       else
       {
@@ -79,13 +81,12 @@ function submission(event)
 function enableOrDisableLB()
 {
   if (fName.value == "" || lName.value == "" || address.value == "" || zip.value == "" ||
-  state.value == "" || userField.value == "" || passField.value == "" || passConfirm.value == "")
+  state.value == "" || passField.value == "" || passConfirm.value == "")
   {
-    loginButton.disabled = true;
+    registerButton.disabled = true;
   }
-
   else
   {
-    loginButton.disabled = false;
+    registerButton.disabled = false;
   }
 }
