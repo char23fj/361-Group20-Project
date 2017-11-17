@@ -8,3 +8,4 @@ Feel free to place any important notes here.
   Maybe before we do that, though, we should sort out the issue of what attributes the user will have.  Please see the issue
   I posted on that.
 
+11/16 Erik and Phil set up and tested the ability to create a new user.  We removed the reference to login.js validation for now. the js validation was diabling the register button when all fields were filled. If someone wants to make it function that would be great.  The query inserts all the fields currently in the user table.  We can modify the write query easily depending on what columns we decide to keep. 
