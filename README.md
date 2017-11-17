@@ -13,3 +13,5 @@ Feel free to place any important notes here.
 11/16 Charles, registering a new user now executes through the newLogin.js. I commented out some of the code that was not working because functions have not been implimented yet. 
 
 11/17 (Charles):  I fixed the errors on newLogin.js and the register page has good client-side functionality.  Tested the error div and it gives proper errors for password matching and length.  If no errors, it executes the http request to the /addUser page (no response because we have to fill in that request handler).  Try it out!  It's pretty nice now.  I'll think about adding further validation for zip code (00000 - 99999) and email address (proper format).
+
+Also, a note on the reqBody variable in newLogin.js:  I noticed someone changed the attributes to match the names I assigned to the form input fields.  They don't need to match up with those.  These are going to be fields that will be sent to the server to create the new user, so they should probably match up with the database fields once we make a firm decision on those.
