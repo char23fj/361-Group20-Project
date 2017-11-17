@@ -32,17 +32,17 @@ function submission(event)
   /*if (dataBaseSearch(user, "userId"))
   {
     error += "That user ID is already in use.\n";
-  }
+  }*/
 
   if (passConfirm.value !== passField.value)
   {
     error += "The passwords you entered don't match.\n";
   }
   
-  if (passField.value.length > 8)
+  if (passField.value.length < 8)
   {
     error += "Your password doesn't meet the minimum length requirement.\n";
-  }*/
+  }
   
   if (error == "")
   {
