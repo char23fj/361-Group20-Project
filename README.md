@@ -9,3 +9,5 @@ Feel free to place any important notes here.
   I posted on that.
 
 11/16 Erik and Phil set up and tested the ability to create a new user.  We removed the reference to login.js validation for now. the js validation was diabling the register button when all fields were filled. If someone wants to make it function that would be great.  The query inserts all the fields currently in the user table.  We can modify the write query easily depending on what columns we decide to keep. 
+
+11/16 Charles, registering a new user now executes through the newLogin.js. I commented out some of the code that was not working because functions have not been implimented yet. 
