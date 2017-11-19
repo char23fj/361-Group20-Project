@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
     "",
+    "\\public",
+    "\\public_html",
     "\\views"
   ],
   "SelectedNode": "\\main.js",

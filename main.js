@@ -89,7 +89,7 @@ app.get('/forgot', function (req, res, next) {
 });
 
 //attempt to login currently reloads page on fail goes to login if success
-app.get('/attemptLogin', function (req, res, next) {
+app.post('/attemptLogin', function (req, res, next) {
     var context = {};
     var tempUserName = req.param('userName');
     var tempPassword = req.param('password');
@@ -111,6 +111,8 @@ app.get('/attemptLogin', function (req, res, next) {
             }
 
             if (temp != '') {
+                            console.log("TEMP VALUE IS:"+temp); 
+            console.log("tempUserName:"+tempUserName);
                 res.render('Forgot', context);
             } else {
                 res.render('login', context);
