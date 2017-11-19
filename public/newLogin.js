@@ -1,6 +1,3 @@
-/* 
- * 
- */
 
 var fName = document.getElementById("firstNameEntry");
 var lName = document.getElementById("lastNameEntry");
@@ -19,12 +16,11 @@ document.addEventListener("DOMContentLoaded", function(){
   registerButton.disabled = true;
   registerButton.addEventListener("click", submission);
   document.getElementById("entryDiv").addEventListener("input", enableOrDisableLB);
-  console.log("fired");
 });
 
+//When register button clicked submits values to database to add user to siteUser table.  
 function submission(event)
 {
-  
   //This will require a div above or below the login fields for entry errors
   var errorBox = document.getElementById("invalidDiv");
   errorBox.textContent = "";
@@ -59,7 +55,7 @@ function submission(event)
       pwBar1: passField.value
     };
     
-    //Post request to the 
+    //Post request to the db
     var req = new XMLHttpRequest();
 
     req.open('POST', '/addUser', true);
@@ -68,7 +64,6 @@ function submission(event)
       if(req.status >= 200 && req.status < 400)
       {
         //console.log(JSON.parse(req.responseText));
-        console.log("query fired!");
       }
       else
       {
@@ -80,6 +75,7 @@ function submission(event)
   event.preventDefault();
 };
 
+//disables register button if any of the input fields are not filled in.  
 function enableOrDisableLB()
 {
   if (fName.value == "" || lName.value == "" || address.value == "" || zip.value == "" ||

@@ -66,7 +66,6 @@ app.post('/addUser', function(req, res, next){
       connection.query("INSERT INTO siteUser (firstName, lastName, address, zipCode, state, userName, password) VALUES (?, ?, ?, ?, ?, ?, ?)", [firstNameEntry, lastNameEntry, addressEntry, zipEntry, stateEntry, userName, pwBar1]); 
       connection.release();
   });
-      
 });
 
 //Render edit account details page
@@ -75,20 +74,19 @@ app.get('/register', function (req, res, next) {
     res.render('register', context);
 });
 
-
-
 //Render edit account details page
 app.get('/editaccount',function(req, res, next){
   var context = {};
   res.render('editaccount', context);
 });
 
+//Render forgot page
 app.get('/forgot', function (req, res, next) {
     var context = {};
     res.render('Forgot', context);
 });
 
-//attempt to login currently reloads page on fail goes to login if success
+//Attempt to login by querying siteUser table.  If credentials are invalid, page reloads if success page goes to main user page. 
 app.post('/attemptLogin', function (req, res, next) {
     var context = {};
     var tempUserName = req.param('userName');
@@ -122,22 +120,12 @@ app.post('/attemptLogin', function (req, res, next) {
     });
 });
 
-
-
-
-
-function loadPage(req, res, next) {
-    var context = {};
-
-    res.render('login', context);
-}
-
-
+//Render 404 page when page cannot be found
 app.use(function(req,res){
   res.status(404);
   res.render('404');
 });
-
+//Render 500 page when a 500 error occurs
 app.use(function(err, req, res, next){
   console.error(err.stack);
   res.type('plain/text');
@@ -145,6 +133,7 @@ app.use(function(err, req, res, next){
   res.render('500');
 });
 
+//Set application port
 app.listen(app.get('port'), function(){
   console.log('Express started on http://flip2.engr.oregonstate.edu:' + app.get('port') + '; press Ctrl-C to terminate.');
 });

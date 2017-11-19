@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function(){
   entryDiv.addEventListener("input", enableOrDisableLB);
 });
 
+//Submit new values for user changing account details
 function submission(event)
 {
   var user = oldUsername.value;
