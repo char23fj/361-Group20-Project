@@ -46,6 +46,35 @@ app.get('/invalidlogin', function(req, res, next){
   res.render('loginfailure', context);
 });
 
+//Add a new user to the database
+app.post('/addUser', function(req, res, next){
+  var context = {};
+  pool.query("INSERT INTO siteUser(firstName, lastName, email, zipCode, "
+  + "userName, password) VALUES (?, ?, ?, ?, ?, ?)", [req.body.fname,
+  req.body.lname, req.body.email, req.body.zip, req.body.userId,
+  req.body.password], function(err, result){
+    if(err){
+      next(err);
+      return;
+    }
+
+    //res.send(context.results);
+    console.log(req.body.fname);
+    //res.send(req.body.userId);
+    //res.type('text/plain');
+    //res.send(null);
+    context.results = JSON.stringify(result);
+    console.log(context.results);
+    if (result.affectedRows)
+    {
+      res.send(200);
+    }
+    console.log("Praise the Sun!");
+  });
+  //res.render('home');
+});
+
+/*
 //Render new user entry page
 app.post('/addUser', function(req, res, next){
   var context = {};
@@ -66,7 +95,9 @@ app.post('/addUser', function(req, res, next){
       connection.query("INSERT INTO siteUser (firstName, lastName, address, zipCode, state, userName, password) VALUES (?, ?, ?, ?, ?, ?, ?)", [firstNameEntry, lastNameEntry, addressEntry, zipEntry, stateEntry, userName, pwBar1]); 
       connection.release();
   });
+      
 });
+*/
 
 //Render edit account details page
 app.get('/register', function (req, res, next) {
@@ -74,11 +105,13 @@ app.get('/register', function (req, res, next) {
     res.render('register', context);
 });
 
+/*
 //Render edit account details page
 app.get('/editaccount',function(req, res, next){
   var context = {};
   res.render('editaccount', context);
 });
+*/
 
 //Render forgot page
 app.get('/forgot', function (req, res, next) {
