@@ -45,33 +45,56 @@ function submission(event)
   if (errorBox.textContent == "")
   {
     var reqBody = {
-      firstNameEntry: fName.value,
-      lastNameEntry: lName.value,
-      emailEntry: email.value,
-      addressEntry: address.value,
-      zipEntry: zip.value,
-      stateEntry: state.value,
-      userName: userName.value,
-      pwBar1: passField.value
+      'fname': fName.value,
+      'lname': lName.value,
+      'email': email.value,
+      'zip': zip.value,
+      'userId': userName.value,
+      'password': passField.value
     };
     
-    //Post request to the db
+    //Post request to the 
     var req = new XMLHttpRequest();
-
+    var change = 0;
+    //console.log("0");
     req.open('POST', '/addUser', true);
+    //console.log("1");
     req.setRequestHeader('Content-Type', 'application/json');
+    //console.log("2");
     req.addEventListener('load', function(event){
       if(req.status >= 200 && req.status < 400)
       {
         //console.log(JSON.parse(req.responseText));
+        console.log("query fired!");
+	change = req.responseText;
       }
       else
       {
         console.log('Error in network request: ' + req.statusText);
       }
     });
-    req.send(JSON.stringify(reqBody));
-  }
+    reqBody = JSON.stringify(reqBody);
+    req.send(reqBody);
+
+    if (change)
+    {
+      req = new XMLHttpRequest();
+
+      req.open('GET', '/home', true);
+//      req.setRequestHeader('Content-Type', 'application/json');
+      req.addEventListener('load', function(event){
+        if(req.status >= 200 && req.status < 400)
+        {
+//        console.log(JSON.parse(req.responseText));
+        console.log("query fired!");
+        }
+        else
+        {
+           console.log('Error in network request: ' + req.statusText);
+        }
+      });
+      req.send(null);
+    }
   event.preventDefault();
 };
 
