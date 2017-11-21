@@ -37,6 +37,7 @@ app.get('/', function(req, res, next){
 //Render main page
 app.get('/home', function(req, res, next){
   var context = {};
+  console.log("Request received");
   res.render('home', context);
 });
 
@@ -67,9 +68,11 @@ app.post('/addUser', function(req, res, next){
     console.log(context.results);
     if (result.affectedRows)
     {
-      res.send(200);
+      res.sendStatus(200);
+//      res.send(null);
     }
     console.log("Praise the Sun!");
+    //res.render('home');
   });
   //res.render('home');
 });
@@ -142,7 +145,7 @@ app.post('/attemptLogin', function (req, res, next) {
             }
 
             if (temp != '') {
-                            console.log("TEMP VALUE IS:"+temp); 
+            console.log("TEMP VALUE IS:"+temp); 
             console.log("tempUserName:"+tempUserName);
                 res.render('Forgot', context);
             } else {
@@ -170,3 +173,4 @@ app.use(function(err, req, res, next){
 app.listen(app.get('port'), function(){
   console.log('Express started on http://flip2.engr.oregonstate.edu:' + app.get('port') + '; press Ctrl-C to terminate.');
 });
+
