@@ -3,9 +3,14 @@
  * arguments after the filename:  port, ONID, and password.
  */
 
-var express = require('express');
 
+
+var handlebars = require('express-handlebars').create({ defaultLayout: 'main' });
+var express = require('express');
+var bodyParser = require('body-parser');
 var mysql = require('mysql');
+var cookieSession = require('cookie-session');
+
 var pool = mysql.createPool({
   connectionLimit : 10,
   host            : 'classmysql.engr.oregonstate.edu',
@@ -15,23 +20,26 @@ var pool = mysql.createPool({
 });
 
 var app = express();
-var handlebars = require('express-handlebars').create({defaultLayout:'main'});
-var bodyParser = require('body-parser');
-
 app.use(express.static('views/images'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.static('public'));
+
+app.use(cookieSession({
+    name: 'session',
+    userId: 0,
+    userName: '',
+    signed: false
+}));
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', process.argv[2]);
 
-app.use(express.static('public'));
-
 //Render login page
 app.get('/', function(req, res, next){
-  var context = {};
-  res.render('login', context);
+    var context = {};
+    res.render('login', context);
 });
 
 //Render main page
@@ -58,54 +66,22 @@ app.post('/addUser', function(req, res, next){
       next(err);
       return;
     }
-
-    //res.send(context.results);
-    console.log(req.body.fname);
-    //res.send(req.body.userId);
-    //res.type('text/plain');
-    //res.send(null);
     context.results = JSON.stringify(result);
     console.log(context.results);
     if (result.affectedRows)
     {
       res.sendStatus(200);
-//      res.send(null);
     }
-    console.log("Praise the Sun!");
-    //res.render('home');
   });
-  //res.render('home');
 });
 
-/*
-//Render new user entry page
-app.post('/addUser', function(req, res, next){
-  var context = {};
-  res.render('register', context);
-
-  var firstNameEntry = req.param('firstNameEntry');
-  var lastNameEntry = req.param('lastNameEntry');
-  var emailEntry = req.param('emailEntry');
-  var addressEntry = req.param('addressEntry');
-  var zipEntry = req.param('zipEntry');
-  var stateEntry = req.param('stateEntry');
-  var userName = req.param('userName');
-  var pwBar1 = req.param('pwBar1');
-
-  var context = {};
-  var myResponse = '';
-  pool.getConnection(function (err, connection) {
-      connection.query("INSERT INTO siteUser (firstName, lastName, address, zipCode, state, userName, password) VALUES (?, ?, ?, ?, ?, ?, ?)", [firstNameEntry, lastNameEntry, addressEntry, zipEntry, stateEntry, userName, pwBar1]); 
-      connection.release();
-  });
-      
-});
-*/
-
-//Render edit account details page
-app.get('/register', function (req, res, next) {
+//Render edit account details page  EDIT 
+app.get('/editAccount', function (req, res, next) {
     var context = {};
-    res.render('register', context);
+    var temp = req.session.userId;
+    console.log("The userID is"+req.session.userId);
+
+    res.render('editAccount', context);
 });
 
 /*
@@ -145,8 +121,9 @@ app.post('/attemptLogin', function (req, res, next) {
             }
 
             if (temp != '') {
-            console.log("TEMP VALUE IS:"+temp); 
-            console.log("tempUserName:"+tempUserName);
+                req.session.userId = temp;
+                req.session.userName = tempUserName;
+                context.userName = tempUserName;
                 res.render('Forgot', context);
             } else {
                 res.render('login', context);
