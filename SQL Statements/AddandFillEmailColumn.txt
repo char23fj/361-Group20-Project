@@ -1,0 +1,7 @@
+
+ALTER TABLE siteUser
+ADD email varchar(255);
+
+UPDATE siteUser
+SET email = 'test@email.com'
+WHERE email =null

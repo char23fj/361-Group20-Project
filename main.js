@@ -56,8 +56,9 @@ app.get('/invalidlogin', function(req, res, next){
 });
 
 //Add a new user to the database
-app.post('/addUser', function(req, res, next){
+app.post('/addUser', function(req, res, next){  
   var context = {};
+
   pool.query("INSERT INTO siteUser(firstName, lastName, email, zipCode, "
   + "userName, password) VALUES (?, ?, ?, ?, ?, ?)", [req.body.fname,
   req.body.lname, req.body.email, req.body.zip, req.body.userId,
@@ -75,13 +76,43 @@ app.post('/addUser', function(req, res, next){
   });
 });
 
-//Render edit account details page  EDIT 
+app.get('/register', function (req, res, next) {
+    var context = {};
+    res.render('register', context);
+});
+
+
+//Render edit account details page
 app.get('/editAccount', function (req, res, next) {
     var context = {};
-    var temp = req.session.userId;
-    console.log("The userID is"+req.session.userId);
+    var tempUserId = req.session.userId;
+    var myResponse = '';
 
-    res.render('editAccount', context);
+    pool.getConnection(function (err, connection) {
+        
+        connection.query("SELECT * FROM siteUser WHERE userId = ?", [tempUserId], function (err, rows, fields) {
+            if (err) {
+                next(err);
+                return;
+            }
+            context.results = JSON.stringify(rows[0]);
+            try {
+                myResponse = JSON.parse(context.results);
+                temp = myResponse.firstName;
+                context.firstName = temp;
+                context.lastName = myResponse.lastName;
+                context.email = myResponse.email;
+                context.address = myResponse.address;
+                context.zipCode = myResponse.zipCode;
+                context.state = myResponse.state;
+                context.userName = myResponse.userName;
+                context.password = myResponse.password;
+                res.render('editAccount', context);
+            } catch (err) {
+            }
+        });
+        connection.release();
+    });
 });
 
 /*
@@ -117,6 +148,7 @@ app.post('/attemptLogin', function (req, res, next) {
             try {
                 myResponse = JSON.parse(context.results);
                 temp = myResponse.userId;
+
             } catch (err) {
             }
 
