@@ -17,3 +17,5 @@ Feel free to place any important notes here.
 Also, a note on the reqBody variable in newLogin.js:  I noticed someone changed the attributes to match the names I assigned to the form input fields.  They don't need to match up with those.  These are going to be fields that will be sent to the server to create the new user, so they should probably match up with the database fields once we make a firm decision on those.
 
 11/19 (Phil): updated the login request to be a post request so username and password are not displayed in the url.  Added notification of account created on register page.  
+
+11/24 (phil): edit account info page is now accessible after logging in and fills forms with user data. the button to update account info does not work yet.  user info is stored in session data for remembering who you are logged in as. Also I noticed there is a syntax error, probs a missing } or ), somewhere in newLogin.js from the last time it was edited so it is not working right now.  
