@@ -95,6 +95,7 @@ function submission(event)
       });
       req.send(null);
     }
+  }
   event.preventDefault();
 };
 
