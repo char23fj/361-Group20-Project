@@ -55,7 +55,7 @@ function submission(event)
     
     //Post request to the 
     var req = new XMLHttpRequest();
-    var change = 0;
+    //var change = 0;
     //console.log("0");
     req.open('POST', '/addUser', true);
     //console.log("1");
@@ -66,7 +66,9 @@ function submission(event)
       {
         //console.log(JSON.parse(req.responseText));
         console.log("query fired!");
-	change = req.responseText;
+	//change = req.responseText;
+	document.getElementById("showUser").style.display = "block";
+	document.getElementById("outerEntry").style.display = "hidden";
       }
       else
       {
@@ -75,7 +77,7 @@ function submission(event)
     });
     reqBody = JSON.stringify(reqBody);
     req.send(reqBody);
-
+/*
     if (change)
     {
       req = new XMLHttpRequest();
@@ -94,7 +96,7 @@ function submission(event)
         }
       });
       req.send(null);
-    }
+    }*/
   }
   event.preventDefault();
 };
