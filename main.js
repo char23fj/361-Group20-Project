@@ -72,7 +72,7 @@ app.post('/addUser', function(req, res, next){
     if (result.affectedRows)
     {
       //res.sendStatus(200);
-      res.send(result.firstName);
+      res.send(req.body.fname);
     }
   });
 });
