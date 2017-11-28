@@ -64,11 +64,11 @@ function submission(event)
     req.addEventListener('load', function(event){
       if(req.status >= 200 && req.status < 400)
       {
-        //console.log(JSON.parse(req.responseText));
+        console.log(req.responseText);
         console.log("query fired!");
-	//change = req.responseText;
-	document.getElementById("showUser").style.display = "block";
-	document.getElementById("outerEntry").style.display = "none";
+        //change = req.responseText;
+        document.getElementById("showUser").style.display = "block";
+        document.getElementById("outerEntry").style.display = "none";
         document.getElementById("showName").textContent = "Welcome, "
         + req.responseText + "!";
       }
@@ -90,7 +90,7 @@ function submission(event)
         if(req.status >= 200 && req.status < 400)
         {
 //        console.log(JSON.parse(req.responseText));
-        console.log("query fired!");
+          console.log("query fired!");
         }
         else
         {
@@ -106,8 +106,9 @@ function submission(event)
 //disables register button if any of the input fields are not filled in.  
 function enableOrDisableLB()
 {
-  if (fName.value == "" || lName.value == "" zip.value == "" || userName.value == ""
-  || passField.value == "" || passConfirm.value == "")
+  if (fName.value == "" || lName.value == "" || address.value == "" || zip.value == "" ||
+  email.value == "" || state.value == "" || userName.value == "" || 
+  passField.value == "" || passConfirm.value == "")
   {
     registerButton.disabled = true;
   }
@@ -126,7 +127,7 @@ function enableOrDisableLB()
     errorBox.textContent += "testuser's password is 'rutabaga'.\n";
     registerButton.disabled = false;
   }
-	
+  
   else
   {
     registerButton.disabled = false;
