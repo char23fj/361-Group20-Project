@@ -73,6 +73,28 @@ app.post('/addUser', function(req, res, next){
     {
       //res.sendStatus(200);
       res.send(req.body.fname);
+      console.log(req.body.fname);
+    }
+  });
+});
+
+app.post('/updateInfo', function(req, res, next){  
+  var context = {};
+
+  pool.query("UPDATE siteUser SET firstName=?, lastName=?, email=?, zipCode=?, "
+  + "userName=?, password=? WHERE userId=?", [req.body.fname, req.body.lname,
+  req.body.email, req.body.zip, req.body.userName, req.body.password,
+  parseInt(req.body.userId)], function(err, result){
+    if(err){
+      next(err);
+      return;
+    }
+    context.results = JSON.stringify(result);
+    console.log(context.results);
+    if (result.affectedRows)
+    {
+      //res.sendStatus(200);
+      res.redirect('/home');
     }
   });
 });
@@ -100,6 +122,7 @@ app.get('/editAccount', function (req, res, next) {
             try {
                 myResponse = JSON.parse(context.results);
                 temp = myResponse.firstName;
+                context.userId = tempUserId;
                 context.firstName = temp;
                 context.lastName = myResponse.lastName;
                 context.email = myResponse.email;
@@ -110,6 +133,7 @@ app.get('/editAccount', function (req, res, next) {
                 context.password = myResponse.password;
                 res.render('editAccount', context);
             } catch (err) {
+                return;
             }
         });
         connection.release();
