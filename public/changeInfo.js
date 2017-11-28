@@ -1,49 +1,53 @@
-var address = document.getElementById("addressEntry");
+var fName = document.getElementById("firstNameEntry");
+var lName = document.getElementById("lastNameEntry");
+var email = document.getElementById("emailEntry");
 var zip = document.getElementById("zipEntry");
-var state = document.getElementById("stateEntry");
-var userField = document.getElementById("idBar");
 var passField = document.getElementById("pwBar1");
 var passConfirm = document.getElementById("pwBar2");
-var loginButton = document.getElementById("submitBtn");
-var entryDiv = document.getElementById("entries");
+var submitButton = document.getElementById("btn");
+var entryDiv = document.getElementById("editAccount");
+var userName = document.getElementById("idBar");
+
 
 document.addEventListener("DOMContentLoaded", function(){
-  loginButton.disabled = true;
-  loginButton.addEventListener("click", submission);
-  entryDiv.addEventListener("input", enableOrDisableLB);
+  submitButton.addEventListener("click", submission);
+  document.getElementById("entryDiv").addEventListener("input", enableOrDisableLB);
 });
 
+//When register button clicked submits values to database to add user to siteUser table.  
 function submission(event)
 {
-  var user = userField.value;
-  
-  //This will require a div above or below the login fields for entry errors
-  var error = document.getElementById("invalidDiv").textContent = "";
+  //Div below the login fields for entry errors
+  var errorBox = document.getElementById("invalidDiv");
+  errorBox.textContent = "";
 
   //This will require a function that queries the DB for COUNT() where (userName = <userId>)
-  if (dataBaseSearch(user, "userId"))
+  /*if (dataBaseSearch(user, "userId"))
   {
-    error += "That user ID is already in use.\n";
-  }
+    errorBox.textContent += "That user ID is already in use.\n";
+  }*/
 
   if (passConfirm.value !== passField.value)
   {
-    error += "The passwords you entered don't match.\n";
+    errorBox.textContent += "The passwords you entered don't match.\n";
   }
   
-  if (passField.value.length > 8)
+  if (passField.value.length < 8)
   {
-    error += "Your password doesn't meet the minimum length requirement.\n";
+    errorBox.textContent += "Your password doesn't meet the minimum length requirement.\n"
+    + "Please choose a password of at least 8 characters.\n";
   }
   
-  if (error == "")
+  if (errorBox.textContent == "")
   {
     var reqBody = {
-      homeAddress: address.value,
-      zipCode: zip.value,
-      homeState: state.value,
-      userId: userField.value,
-      password: passField.value
+      'userId': document.getElementById("userId").value,
+      'fname': fName.value,
+      'lname': lName.value,
+      'email': email.value,
+      'zip': zip.value,
+      'userName': userName.value,
+      'password': passField.value
     };
       
     var req = new XMLHttpRequest();
@@ -53,7 +57,8 @@ function submission(event)
     req.addEventListener('load', function(event){
       if(req.status >= 200 && req.status < 400)
       {
-        console.log(JSON.parse(req.responseText));
+        console.log("information updated");
+        errorBox.textContent = "Account updated successfully.";
       }
       else
       {
@@ -65,16 +70,17 @@ function submission(event)
   event.preventDefault();
 };
 
+//disables register button if any of the input fields are not filled in.  
 function enableOrDisableLB()
 {
-  if (address.value == "" || zip.value == "" || state.value == "" ||
-      userField.value == "" || passField.value == "" || passConfirm.value == "")
+  if (fName.value == "" || lName.value == "" || zip.value == "" || email.value == ""
+  || userName.value == "" || passField.value == "" || passConfirm.value == "")
   {
-    loginButton.disabled = true;
+    submitButton.disabled = true;
   }
-
+  
   else
   {
-    loginButton.disabled = false;
+    submitButton.disabled = false;
   }
 }
