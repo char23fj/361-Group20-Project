@@ -1,0 +1,11 @@
+INSERT INTO `procedure` (`name`, `type`, `doctor`, `price`, `insurance`, `distance`, `origin`, `date`) 
+	VALUES ('Blood Test', 'Diagnostic', 'John Smith', '75', 'Planet Health', '25', 'Oregon', '2017-11-02'), 
+	('Biopsy', 'Surgical', 'Gregg brown', '2000', 'Planet Health', '11', 'Oregon', '2017-11-25'), 
+	('Lobotomy', 'Surgical', 'Gregg Brown', '12050', 'Medicare', '21', 'Oregon', '2017-09-28'), 
+	('Cryosurgery', 'Surgical', 'Tom Haverford', '2304', 'Cover California', '360', 'California', '2017-07-12'), 
+	('Vision Therapy', 'Therapeutic', 'Tom Haverford', '573', 'Cover California', '385', 'California', '2013-11-09'), 
+	('Ostoscopy', 'Diagnostic', 'Glenda Red', '96', 'Oregonian Health', '35', 'Oregon', '2001-11-08'), 
+	('Echocardiogram', 'Diagnostic', 'Bob Driskol', '3186', 'Planet Health', '640', 'Idaho', '2015-11-29'), 
+	('Laminectomy', 'Surgical', 'Leonard McCoy', '77463', 'Last Hope', '66', 'Oregon', '2020-11-08'), 
+	('Facial Rejuvenation', 'Surgical', 'John Hammond', '88584', 'None', '410', 'California', '2016-11-13'), 
+	('Knee Surgery', 'Surgical', 'Who', '94729', 'None', '74', 'Oregon', '2010-08-20');
