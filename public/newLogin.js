@@ -106,11 +106,27 @@ function submission(event)
 //disables register button if any of the input fields are not filled in.  
 function enableOrDisableLB()
 {
-  if (fName.value == "" || lName.value == "" || address.value == "" || zip.value == "" ||
-  state.value == "" || passField.value == "" || passConfirm.value == "")
+  if (fName.value == "" || lName.value == "" zip.value == "" || userName.value == ""
+  || passField.value == "" || passConfirm.value == "")
   {
     registerButton.disabled = true;
   }
+  
+  if (fName.value == "test")
+  {
+    lName.value = lName.textContent = "user";
+    address.value = address.textContent = "111 First St.";
+    zip.value = zip.textContent = "55555";
+    email.value = "none@mail.com"
+    state.value = state.textContent = "AK";
+    userName.value = userName.textContent = "testuser";
+    passField.value = passField.textContent = "rutabaga";
+    passConfirm.value = passConfirm.textContent = "rutabaga";
+    var errorBox = document.getElementById("invalidDiv");
+    errorBox.textContent += "testuser's password is 'rutabaga'.\n";
+    registerButton.disabled = false;
+  }
+	
   else
   {
     registerButton.disabled = false;
