@@ -84,7 +84,15 @@ h5{
     font-size: 30px; 
 }
 
+h7{
+     position: relative;
+     padding-right: 100px;
+     text-align: justify;
+     width: 200px;
+     display: inline-block;
+}
+
 p2{
-    font-size:15;
-    font-color:black; 
+    font-size: 15px;
+    color: black;
 }
