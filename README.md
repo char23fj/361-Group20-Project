@@ -25,3 +25,5 @@ Also, a note on the reqBody variable in newLogin.js:  I noticed someone changed 
 11/28  (Charles):
 1.  Fixed the show/hide actions and response text from server to display a welcome message for the user and a link to home after registering.
 2.  I am pleased to report full functionality for new user registration and changing account details.  Note, however, that there are still some fields (address, state) in the registration form that are unused in the database and do not appear on the change details page.  I can remove those from the new user page later.
+
+11/28 (Erik) Wrote SQL statement to create a "procedure" table in the database and a statement to fill it with data for use when testing the searching functionality of the application.
