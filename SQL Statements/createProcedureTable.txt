@@ -1,10 +1,10 @@
 CREATE TABLE `procedure` ( 
 	`name` VARCHAR(255), 
 	`type` VARCHAR(255), 
-	`doctor` VARCHAR(255), 
-	`price` INT(11), 
+	`doctor` VARCHAR(255),  
 	`insurance` VARCHAR(255), 
 	`distance` INT(11), 
-	`origin` VARCHAR(255)
+	`origin` VARCHAR(255),
+	`price` INT(11),
 	`date` DATE)
 	ENGINE = InnoDB;
