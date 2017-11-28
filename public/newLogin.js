@@ -68,7 +68,9 @@ function submission(event)
         console.log("query fired!");
 	//change = req.responseText;
 	document.getElementById("showUser").style.display = "block";
-	document.getElementById("outerEntry").style.display = "hidden";
+	document.getElementById("outerEntry").style.display = "none";
+        document.getElementById("showName").textContent = "Welcome, "
+        + req.responseText + "!";
       }
       else
       {
