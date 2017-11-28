@@ -21,4 +21,7 @@ Also, a note on the reqBody variable in newLogin.js:  I noticed someone changed 
 11/24 (phil): edit account info page is now accessible after logging in and fills forms with user data. the button to update account info does not work yet.  user info is stored in session data for remembering who you are logged in as. Also I noticed there is a syntax error, probs a missing } or ), somewhere in newLogin.js from the last time it was edited so it is not working right now.  
 
 11/25 (Charles): Added the missing parenthesis.  It was on the version that's currently running the site, but I hadn't updated this one.
-11/28  "": Fixed the show/hide actions and response text from server to display a welcome message for the user and a link to home after registering
+
+11/28  (Charles):
+1.  Fixed the show/hide actions and response text from server to display a welcome message for the user and a link to home after registering.
+2.  I am pleased to report full functionality for new user registration and changing account details.  Note, however, that there are still some fields (address, state) in the registration form that are unused in the database and do not appear on the change details page.  I can remove those from the new user page later.
