@@ -161,7 +161,7 @@ app.get('/procedureNames', function (req, res, next) {
     console.log("HERE I FIRED");
     pool.getConnection(function (err, connection) {
         
-        connection.query("SELECT name FROM `procedure` WHERE 1", function (err, rows, fields) {
+        connection.query("SELECT DISTINCT name FROM `procedure` WHERE 1", function (err, rows, fields) {
             if (err) {
                 next(err);
                 return;
@@ -173,12 +173,23 @@ app.get('/procedureNames', function (req, res, next) {
     });
 });
 
-
-
-
-
-
-
+app.get('/showprices', function (req, res, next) {
+    var context = {};
+    console.log("Hello search!");
+    pool.getConnection(function (err, connection) {
+        
+        connection.query("SELECT * FROM `procedure` WHERE name=? && distance < 101",
+        [req.query.name], function (err, rows) {
+            if (err) {
+                next(err);
+                return;
+            }
+            context.showAllResults = rows;
+            res.send(context.showAllResults);
+        });
+        connection.release();
+    });
+});
 
 //Render forgot page
 app.get('/forgot', function (req, res, next) {
