@@ -30,3 +30,5 @@ Also, a note on the reqBody variable in newLogin.js:  I noticed someone changed 
 
 
 11/29 (phil) Made search page accessible from the home page. Added a dropdown box for the procedures.  Their values are the string name of the procedure so when we request a procedure we can pass that value to the request.  I think this is best for our prototype so that the grader does not have to guess on what procedures exist. 
+
+11/30 (Charles):  Did some fine-tuning.  Also added a request and request handler to perform a search.  If I have more time later I'll look at the result page and how to populate it; I just have a display div showing the stringified result for now.
