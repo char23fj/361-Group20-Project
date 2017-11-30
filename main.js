@@ -148,6 +148,38 @@ app.get('/editaccount',function(req, res, next){
 });
 */
 
+
+
+//Render new search page
+app.get('/searchPage', function (req, res, next) {
+    var context = {};
+    res.render('search', context);
+});
+
+app.get('/procedureNames', function (req, res, next) {
+    var context = {};
+    console.log("HERE I FIRED");
+    pool.getConnection(function (err, connection) {
+        
+        connection.query("SELECT name FROM `procedure` WHERE 1", function (err, rows, fields) {
+            if (err) {
+                next(err);
+                return;
+            }
+            context.showAllResults = rows;
+			res.send(context.showAllResults);
+        });
+        connection.release();
+    });
+});
+
+
+
+
+
+
+
+
 //Render forgot page
 app.get('/forgot', function (req, res, next) {
     var context = {};
@@ -202,6 +234,8 @@ app.use(function(err, req, res, next){
   res.status(500);
   res.render('500');
 });
+
+
 
 //Set application port
 app.listen(app.get('port'), function(){

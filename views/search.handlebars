@@ -1,4 +1,4 @@
-<html>
+﻿<html>
     <head>
         <title>Procedure Search</title>
         <meta charset="UTF-8">
@@ -11,6 +11,11 @@
             <h5>Search for a Procedure!</h5>
             <form action='' method="POST"> 
             
+                <label>Procedure Type</label>
+                <select id='procedureBox'>
+                </select>
+
+                
                 <input id='txtbox1' type='text' placeholder='Procedure Type' value=''/><br>
                 <br>
                 <br>
@@ -18,5 +23,6 @@
                                
                 <input id='btn' type='button' value='Search'/><br>
         </div>
+        <script src="searchProcedure.js"></script>
     </body>
 </html>
