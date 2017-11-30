@@ -1,6 +1,8 @@
-
+var searchBtn = document.getElementById('btn');
+var zip = document.getElementById('txtBox2');
 document.addEventListener("DOMContentLoaded", function(){
     showProcedures();
+    searchBtn.addEventListener("click", performSearch);
 });
 
 
@@ -12,8 +14,8 @@ function showProcedures(){
 	req.send();
 		
     req.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			var arr = JSON.parse(this.responseText);
+	if (this.readyState == 4 && this.status == 200) {
+	    var arr = JSON.parse(this.responseText);
 
 
             for (var procedure of arr){
@@ -21,10 +23,10 @@ function showProcedures(){
                     var attrValue = procedure[key];
                     var a = document.createElement("OPTION");
                     a.setAttribute("value", attrValue);
-		            a.setAttribute("name",attrValue);
+		    a.setAttribute("name",attrValue);
                     var b = document.createTextNode(attrValue);
                     a.appendChild(b);
-		            document.getElementById("procedureBox").appendChild(a);    
+		    document.getElementById("procedureBox").appendChild(a);    
             }
         }	
         console.log(this.responseText);
@@ -34,7 +36,22 @@ function showProcedures(){
     }
 };
 
+function performSearch(){
+    console.log("search initiated")
+    var proc = document.getElementById('txtbox1');
+    var req = new XMLHttpRequest();
+    req.open('GET', '/showprices?name=' + proc.value, true);
+    req.send();
+		
+    req.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var arr = JSON.parse(this.responseText);
+            var display = document.getElementById('resultdiv');
+            display.textContent = this.responseText;
+        }
 
+    };
+}
 
 
 
