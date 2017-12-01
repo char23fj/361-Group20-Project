@@ -34,3 +34,10 @@ Also, a note on the reqBody variable in newLogin.js:  I noticed someone changed 
 11/30 (Charles):  Did some fine-tuning.  Also added a request and request handler to perform a search.  If I have more time later I'll look at the result page and how to populate it; I just have a display div showing the stringified result for now.
 
 11/30 (Phil): added auto complete suggestion to zip code search box.  added sql statements to add zip column to table.  updated back to home buttons to display name of user on return. 
+
+12/1 (Charles):  Edited search results page and changed request handler to render said page.  Notes from my edit on the view file:
+"You guys can decide what you want to display, but I stuck with distance for the time being (I think that would be the ultimate result, although we currently have an arbitrary process of obtaining that number).  Note that the search query on main.js displays results where distance < 101, so tinker with that at will."
+Also, if we want to do something with zip code, maybe list results within 1 on the second digit or something?  For example, if zip is 63031, list all from 62031 to 64031.  Maybe do a couple quick calculations above the query along the lines of:
+var hi = req.query.zip + 1000;
+var low = req.query.zip - 1000;
+And then do the query "WHERE zip < ? && zip > ?", with added arguments hi and low.
