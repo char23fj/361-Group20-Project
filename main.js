@@ -195,6 +195,15 @@ app.get('/forgot', function (req, res, next) {
     res.render('Forgot', context);
 });
 
+app.get('/homePage', function (req, res, next) {
+    var context = {};
+    context.userName = req.session.userName;
+    res.render('Forgot', context);
+});
+
+
+
+
 //Attempt to login by querying siteUser table.  If credentials are invalid, page reloads if success page goes to main user page. 
 app.post('/attemptLogin', function (req, res, next) {
     var context = {};
