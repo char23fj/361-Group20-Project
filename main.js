@@ -183,7 +183,8 @@ app.get('/showprices', function (req, res, next) {
                 return;
             }
             context.showAllResults = rows;
-            res.send(context.showAllResults);
+            //res.send(context.showAllResults);
+	    res.render('searchResults', context);
         });
         connection.release();
     });
