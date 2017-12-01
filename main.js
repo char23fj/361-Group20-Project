@@ -4,7 +4,6 @@
  */
 
 
-
 var handlebars = require('express-handlebars').create({ defaultLayout: 'main' });
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -156,12 +155,11 @@ app.get('/searchPage', function (req, res, next) {
     res.render('search', context);
 });
 
-app.get('/procedureNames', function (req, res, next) {
+app.get('/populateSearchPage', function (req, res, next) {
     var context = {};
-    console.log("HERE I FIRED");
     pool.getConnection(function (err, connection) {
         
-        connection.query("SELECT DISTINCT name FROM `procedure` WHERE 1", function (err, rows, fields) {
+        connection.query("SELECT DISTINCT name, DISTINCT zip FROM `procedure` WHERE 1", function (err, rows, fields) {
             if (err) {
                 next(err);
                 return;

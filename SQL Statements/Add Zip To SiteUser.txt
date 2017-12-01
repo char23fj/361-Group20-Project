@@ -1,0 +1,6 @@
+ALTER TABLE `procedure`
+ADD `zip` INT NOT NULL
+
+UPDATE `procedure` SET 
+	`zip` = 63031
+WHERE 1 = 1;

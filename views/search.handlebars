@@ -1,6 +1,6 @@
 ﻿<html>
     <head>
-        <title>Procedure Search</title>
+         <title>Procedure Search</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="style.css"/>
@@ -9,11 +9,15 @@
     <body>
         <div class="registerform">
             <h5>Search for a Procedure!</h5>
+            
+            
+            
+
             <div id="entry"> 
             
                 <h7>Procedure Type</h7><br>
-                <datalist id='procedures'></datalist>
-                <input id='txtbox1' type='text' list='procedures' placeholder='Procedure Type' value=''>
+               
+                <select id='txtbox1'></select>
                 <br>
                 <br>
                 <input id='txtbox2' type='text' placeholder='Zip Code' value=''/><br>
@@ -24,5 +28,9 @@
             <div id='resultdiv'></div>
         </div>
         <script src="searchProcedure.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     </body>
 </html>
