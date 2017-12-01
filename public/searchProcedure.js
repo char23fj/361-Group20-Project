@@ -47,9 +47,9 @@ function performSearch(){
 		
     req.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            var arr = JSON.parse(this.responseText);
-            var display = document.getElementById('resultdiv');
-            display.textContent = this.responseText;
+            //var arr = JSON.parse(this.responseText);
+            //var display = document.getElementById('resultdiv');
+            //display.textContent = this.responseText;
         }
     };
 }
