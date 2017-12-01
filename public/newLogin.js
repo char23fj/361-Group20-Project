@@ -2,9 +2,7 @@
 var fName = document.getElementById("firstNameEntry");
 var lName = document.getElementById("lastNameEntry");
 var email = document.getElementById("emailEntry");
-var address = document.getElementById("addressEntry");
 var zip = document.getElementById("zipEntry");
-var state = document.getElementById("stateEntry");
 var passField = document.getElementById("pwBar1");
 var passConfirm = document.getElementById("pwBar2");
 var registerButton = document.getElementById("submitBtn");
@@ -79,26 +77,6 @@ function submission(event)
     });
     reqBody = JSON.stringify(reqBody);
     req.send(reqBody);
-/*
-    if (change)
-    {
-      req = new XMLHttpRequest();
-
-      req.open('GET', '/home', true);
-//      req.setRequestHeader('Content-Type', 'application/json');
-      req.addEventListener('load', function(event){
-        if(req.status >= 200 && req.status < 400)
-        {
-//        console.log(JSON.parse(req.responseText));
-          console.log("query fired!");
-        }
-        else
-        {
-           console.log('Error in network request: ' + req.statusText);
-        }
-      });
-      req.send(null);
-    }*/
   }
   event.preventDefault();
 };
@@ -106,20 +84,18 @@ function submission(event)
 //disables register button if any of the input fields are not filled in.  
 function enableOrDisableLB()
 {
-  if (fName.value == "" || lName.value == "" || address.value == "" || zip.value == "" ||
-  email.value == "" || state.value == "" || userName.value == "" || 
-  passField.value == "" || passConfirm.value == "")
+  if (fName.value == "" || lName.value == "" || zip.value == "" || email.value == ""
+     || userName.value == "" || passField.value == "" || passConfirm.value == "")
   {
     registerButton.disabled = true;
   }
   
   if (fName.value == "test")
   {
+    fName.value += "01";
     lName.value = lName.textContent = "user";
-    address.value = address.textContent = "111 First St.";
     zip.value = zip.textContent = "55555";
     email.value = "none@mail.com"
-    state.value = state.textContent = "AK";
     userName.value = userName.textContent = "testuser";
     passField.value = passField.textContent = "rutabaga";
     passConfirm.value = passConfirm.textContent = "rutabaga";
