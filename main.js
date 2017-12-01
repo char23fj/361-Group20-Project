@@ -159,7 +159,7 @@ app.get('/populateSearchPage', function (req, res, next) {
     var context = {};
     pool.getConnection(function (err, connection) {
         
-        connection.query("SELECT DISTINCT name, DISTINCT zip FROM `procedure` WHERE 1", function (err, rows, fields) {
+        connection.query("SELECT DISTINCT name, zip FROM `procedure` WHERE 1", function (err, rows, fields) {
             if (err) {
                 next(err);
                 return;

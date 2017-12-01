@@ -32,7 +32,7 @@ function showProcedures(){
             }
         }	
         //filter out duplicates from dropdown
-        myData = myData.filter( function( value, index, array ) { return array.indexOf(item) == index;});
+        myData = myData.filter( function( value, index, array ) { return array.indexOf(value) == index;});
         $("#txtbox2").autocomplete({source: myData});
 		}
     }
