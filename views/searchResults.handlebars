@@ -17,6 +17,16 @@
                     <th> Price  </th>
                     <th> Date </th> 
                 </tr>
+                {{#each showAllResults}}
+                <tr id="row{{id}}"><span>
+                    <td>{{doctor}}</td> 
+                    <td>{{insurance}}</td> 
+                    <td>{{distance}}</td> 
+                    <td>{{origin}}</td> 
+                    <td>{{price}}</td>
+                    <td>{{date}}</td>
+                </tr>
+                {{/each}}
        </div>
     </body>
 </html>
