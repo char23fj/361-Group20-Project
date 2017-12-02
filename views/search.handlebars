@@ -10,25 +10,22 @@
         <div class="registerform">
             <h5>Search for a Procedure!</h5>
 
-            
-            
-            
             <div id="entry">      
                 <h7>Procedure Type</h7><br>
-               
+                <br/>
                 <!--Select is tied to pricesForm-->
                 <select id='txtbox1' name="txtbox1" form= "pricesForm"></select>
-
+                <br/>
+                <br/>
                 <form action="/showprices"  id="pricesForm"  method="get">
-                    <input id='txtbox2'   name="txtbox2"  type='text' placeholder='Zip Code' value='' /><br>
-                    <input id='btn' type='submit' value='Search' /><br>
+                    <input id='txtbox2'   name="txtbox2"  type='text' placeholder='Zip Code' value='' /><br/>
+                    <input id='styledButton' type='submit' value='Search' /><br/>
                 </form>
             </div>
-
-
-
+            <br/>
+            <br/>
             <form action="/homePage" method="get">
-                <input type="submit" value="Back to Home Page" />
+                <input id='styledButton' type="submit" value="Back to Home Page" />
             </form>
 
 

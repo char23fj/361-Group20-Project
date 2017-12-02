@@ -96,3 +96,51 @@ p2{
     font-size: 15px;
     color: black;
 }
+
+#resultsTable {
+    width: 50%;
+    margin: auto;
+    background-color: snow;
+    border: 1px solid black;
+}
+
+th {
+    text-decoration: underline;
+    padding-bottom: 10px;
+}
+
+tr{
+    padding-bottom: 5px;
+}
+
+#styledButton {
+    padding: 12px 20px 10px 20px;
+    color: #ffffff;
+    background-color: grey;
+    border-radius: 3px;
+    box-shadow: none;
+    border: none;
+}
+
+#styledButton:hover {
+    background-color: #17b73f;
+}
+
+
+.styledButton {
+    padding: 12px 20px 10px 20px;
+    color: #ffffff;
+    background-color: grey;
+    border-radius: 3px;
+    box-shadow: none;
+    border: none;
+}
+
+
+.styledButton:hover {
+    background-color: #17b73f;
+}
+
+.styledButton:disabled {
+        background-color: darkgrey;
+}

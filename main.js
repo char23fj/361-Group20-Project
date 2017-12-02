@@ -177,9 +177,6 @@ app.get('/showprices', function (req, res, next) {
     var procedureName = req.param('txtbox1');
     var zip = req.param('txtbox2');
 
-    console.log("procedure and zip are =" + procedureName + " " + zip);
-
-    console.log("Hello search!");
     pool.getConnection(function (err, connection) {
         
         connection.query("SELECT *, DATE_FORMAT(date, '%d/%m/%Y' ) AS date FROM `procedure` WHERE name=? && zip = ?", [procedureName, zip], function (err, rows) {
@@ -188,6 +185,7 @@ app.get('/showprices', function (req, res, next) {
                 return;
             }
             context.showAllResults = rows;
+            context.procedureName = procedureName;
             res.render('searchResults', context);
         });
         connection.release();

@@ -9,15 +9,16 @@
         <div id="createAccountNotification"></div>
         <div id="userNameDisplay"></div>
         <div>Welcome {{userName}}. This page is not yet built out. </div>
-        
-        <form action="/editAccount" method="get" id="attemptLogin">
-            <input type="submit" value="Edit Account Info"/>
-        </form>
-        
-        <form action="/searchPage" method="get" id="searchPage">
-            <input type="submit" value="Search For Procedure"/>
-        </form>
-
+        <div id="homeButtons">
+            <br />
+            <form action="/editAccount" method="get" id="attemptLogin">
+                <input id='styledButton' type="submit" value="Edit Account Info" />
+            </form>
+            <br />
+            <form action="/searchPage" method="get" id="searchPage">
+                <input id='styledButton' type="submit" value="Search For Procedure" />
+            </form>
+        </div>
       
      <script>
 
