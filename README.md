@@ -41,3 +41,5 @@ Also, if we want to do something with zip code, maybe list results within 1 on t
 var hi = req.query.zip + 1000;
 var low = req.query.zip - 1000;
 And then do the query "WHERE zip < ? && zip > ?", with added arguments hi and low.
+
+12/1 (Phil) Search results page works and displays in a table.  added styling to buttons and table.  
