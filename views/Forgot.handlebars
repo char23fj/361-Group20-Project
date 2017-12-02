@@ -6,18 +6,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div id="createAccountNotification"></div>
-        <div id="userNameDisplay"></div>
-        <div>Welcome {{userName}}. This page is not yet built out. </div>
-        <div id="homeButtons">
-            <br />
-            <form action="/editAccount" method="get" id="attemptLogin">
-                <input id='styledButton' type="submit" value="Edit Account Info" />
-            </form>
-            <br />
-            <form action="/searchPage" method="get" id="searchPage">
-                <input id='styledButton' type="submit" value="Search For Procedure" />
-            </form>
+        <div class="LogIn" style="position: absolute; left: 480px">
+            <div id="createAccountNotification"></div>
+            <div id="userNameDisplay"></div>
+            <div style="background-color: rgba(360, 360, 360, 0.6);
+            margin-left: 40px; margin-right: 40px; margin-top: 50px">
+                <br>
+                <h2>Welcome, {{userName}}.</h2>
+                <h3>This page is not yet complete.</h3>
+
+                <div id="homeButtons">
+                    <br>
+                    <form action="/editAccount" method="get" id="attemptLogin">
+                        <input id='styledButton' type="submit" value="Edit Account Info" />
+                    </form>
+                    <br>
+                    <form action="/searchPage" method="get" id="searchPage">
+                        <input id='styledButton' type="submit" value="Search For Procedure" />
+                    </form><br><br>
+                </div>
+            </div>
         </div>
       
      <script>
