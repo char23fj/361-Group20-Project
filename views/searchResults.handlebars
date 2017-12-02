@@ -8,32 +8,40 @@
         <script src="searchResults.js"></script>
 
     </head>
-    <body>
-        <div class="registerform">
-            <h5>Here are Your Results!</h5>
-            
-
-            <table style="width:60%" class="resTbl" id="resultsTable">
-                <tr>
-                    <th> Doctor </th>
-                    <th> Insurance </th>
-                    <th> Distance </th>
-                    <th> Origin </th>
-                    <th> Price  </th>
-                    <th> Date </th> 
-                </tr>
-                {{#each showAllResults}}
-                <tr><span>
-                    <td>{{doctor}}</td> 
-                    <td>{{insurance}}</td> 
-                    <td>{{distance}} miles</td> 
-                    <td>{{origin}}</td> 
+<body>
+    <div class="registerform">
+        <h5>Here are Your Results For</h5>
+        <h5>{{procedureName}} </h5>
+        <table id="resultsTable">
+            <tr>
+                <th> Doctor </th>
+                <th> Insurance </th>
+                <th> Distance </th>
+                <th> Origin </th>
+                <th> Price  </th>
+                <th> Date </th>
+            </tr>
+            {{#each showAllResults}}
+            <tr>
+                <span>
+                    <td>{{doctor}}</td>
+                    <td>{{insurance}}</td>
+                    <td>{{distance}} miles</td>
+                    <td>{{origin}}</td>
                     <td>${{price}}</td>
                     <td>{{date}}</td>
-                </tr>
-                {{/each}}
-       </div>
-        <div id="errorDiv"></div>
-    </body>
+            </tr>
+            {{/each}}
+            
+            <div id="errorDiv"></div>
+
+            <div id="returnSearch"  style="padding-bottom: 100px">
+                <form action="/searchPage" method="get">
+                    <input id="styledButton" type="submit" value="Search Again"/>
+                </form>
+            </div>
+
+    </div>
+</body>
 </html>
 
