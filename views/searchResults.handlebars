@@ -1,13 +1,24 @@
-<html>
+﻿<html>
     <head>
         <title>Search Results</title>
         <link rel="stylesheet" type="text/css" href="style.css"/>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script> //var my_chart = JSON.stringify(showAllResults);
+
+        console.log("CONTEXT IS :"+ JSON.stringify(context.showAllResults));
+
+        </script>
+
+        <script src="searchResults.js"></script>
+
     </head>
     <body>
         <div class="registerform">
-            <h5>Change Account Details!</h5>
+            <h5>Here are Your Results!</h5>
+            
+
             <table style="width:80%" id="resultsTable">
                 <tr>
                     <th> Doctor </th>
@@ -21,13 +32,14 @@
                 <tr><span>
                     <td>{{doctor}}</td> 
                     <td>{{insurance}}</td> 
-                    <td>{{distance}}</td> 
+                    <td>{{distance}} miles</td> 
                     <td>{{origin}}</td> 
-                    <td>{{price}}</td>
+                    <td>${{price}}</td>
                     <td>{{date}}</td>
                 </tr>
                 {{/each}}
        </div>
+
     </body>
 </html>
 

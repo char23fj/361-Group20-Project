@@ -173,17 +173,22 @@ app.get('/populateSearchPage', function (req, res, next) {
 
 app.get('/showprices', function (req, res, next) {
     var context = {};
+
+    var procedureName = req.param('txtbox1');
+    var zip = req.param('txtbox2');
+
+    console.log("procedure and zip are =" + procedureName + " " + zip);
+
     console.log("Hello search!");
     pool.getConnection(function (err, connection) {
         
-        connection.query("SELECT * FROM `procedure` WHERE name=? && distance < 101",
-        [req.query.name], function (err, rows) {
+        connection.query("SELECT *, DATE_FORMAT(date, '%d/%m/%Y' ) AS date FROM `procedure` WHERE name=? && zip = ?", [procedureName, zip], function (err, rows) {
             if (err) {
                 next(err);
                 return;
             }
             context.showAllResults = rows;
-            res.send(context.showAllResults);
+            res.render('searchResults', context);
         });
         connection.release();
     });
@@ -200,8 +205,6 @@ app.get('/homePage', function (req, res, next) {
     context.userName = req.session.userName;
     res.render('Forgot', context);
 });
-
-
 
 
 //Attempt to login by querying siteUser table.  If credentials are invalid, page reloads if success page goes to main user page. 

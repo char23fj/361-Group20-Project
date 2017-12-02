@@ -2,7 +2,7 @@ var searchBtn = document.getElementById('btn');
 
 document.addEventListener("DOMContentLoaded", function(){
     showProcedures();
-    searchBtn.addEventListener("click", performSearch);
+    //searchBtn.addEventListener("click", performSearch);
 });
 
 
@@ -38,7 +38,7 @@ function showProcedures(){
     }
 };
 
-function performSearch(){
+/*function performSearch(){
     console.log("search initiated")
     var proc = document.getElementById('txtbox1');
     var req = new XMLHttpRequest();
@@ -52,5 +52,5 @@ function performSearch(){
             //display.textContent = this.responseText;
         }
     };
-}
+}*/
 
